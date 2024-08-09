@@ -249,7 +249,7 @@ select
 	Id,
 	Title + ' - Author: ' + Author + ', number of visits: ' + convert(varchar(10), NumberOfVisits) as TitleAuthorNumberOfVisits
 from Article
-where [ExpireDate] >= getdate();
+where [ExpireDate] > getdate();
 
 -- 25. Prikazati koji sve razliciti domeni postoje medju advokatima (Layer) na osnovu njihove email adrese (gde email adresa postoji)
 
