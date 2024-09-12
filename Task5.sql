@@ -319,7 +319,7 @@ GO
 
 exec [dbo].[spDealByIdsAndValueRange_DraganPeric] '1,2,3,4,5,6,7,8,9,10', 300000, 1000000
 
--- Dobijam error: Invalid object name 'string_split'. Za fix kaze da treba da se namesti database da ima compatibility bar 130, a trenutno ima 110. Nisam hteo to da menjam bez da pitam prvo.
+-- Dobijam error: Invalid object name 'string_split'. Na internetu kaze da je to zbog database compatibility-a, pa nisam znao da li to ja smem da diram ovde.
 
 select value
 from string_split('1,2,3,4,5,6', ',')
@@ -343,8 +343,7 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-    if object_id(N'dbo.reportNotExpiredArticles_DraganPeric', N'U') is not null
-		drop table [dbo].[reportNotExpiredArticles_DragnaPeric];
+	drop table if exists [dbo].[reportNotExpiredArticles_DragnaPeric]
 
 	select Id, Title, datediff(day, current_date, [ExpireDate]) as ExpiresIn
 	from Article
